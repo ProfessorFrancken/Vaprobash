@@ -67,48 +67,22 @@ Here's a quickstart screencast!
 
 [View the site and extended docs.](http://fideloper.github.io/Vaprobash/index.html)
 
-## What You Can Install
+## What Is Installed
 
 * Base Packages
 	* Base Items (Git and more!)
 	* PHP (php-fpm)
 	* Vim
 	* PHP MsSQL (ability to connect to SQL Server)
-	* Screen
-	* Docker
 * Web Servers
-	* Apache
-	* HHVM
 	* Nginx
 * Databases
-	* Couchbase
-	* CouchDB
-	* MariaDB
-	* MongoDB
 	* MySQL
-	* Neo4J
-	* PostgreSQL
 	* SQLite
-* In-Memory Stores
-	* Memcached
-	* Redis
-* Search
-	* ElasticSearch and ElasticHQ
-* Utility
-	* Beanstalkd
-	* Supervisord
-    * Kibana
 * Additional Languages
 	* NodeJS via NVM
-	* Ruby via RVM
 * Frameworks / Tooling
 	* Composer
-	* Laravel
-	* Symfony
-	* PHPUnit
-	* MailCatcher
-    * Ansible
-	* Android
 
 ## The Vagrantfile
 

@@ -31,11 +31,6 @@ function create_server_block {
     php -v > /dev/null 2>&1
     PHP_IS_INSTALLED=$?
 
-    # Test if HHVM is installed
-    hhvm --version > /dev/null 2>&1
-    HHVM_IS_INSTALLED=$?
-    [[ $HHVM_IS_INSTALLED -eq 0 ]] && { PHP_IS_INSTALLED=-1; }
-
     # Default empty PHP Config
     PHP_NO_SSL=""
     PHP_WITH_SSL=""
@@ -69,43 +64,6 @@ read -d '' PHP_WITH_SSL <<EOF
             try_files \$uri =404;
             fastcgi_split_path_info ^(.+\.php)(/.+)$;
             # With php5-fpm:
-            fastcgi_pass 127.0.0.1:9000;
-            fastcgi_index index.php;
-            include fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-            fastcgi_param LARA_ENV local; # Environment variable for Laravel
-            fastcgi_param HTTPS on;
-        }
-EOF
-    fi
-
-    if [[ $HHVM_IS_INSTALLED -eq 0 ]]; then
-
-# Nginx Server Block config for HHVM (without using SSL)
-read -d '' PHP_NO_SSL <<EOF
-        # pass the PHP scripts to php5-fpm
-        location ~ \.(hh|php)$ {
-            try_files \$uri =404;
-            fastcgi_keep_conn on;
-            fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            # With HHVM:
-            fastcgi_pass 127.0.0.1:9000;
-            fastcgi_index index.php;
-            include fastcgi_params;
-            fastcgi_param SCRIPT_FILENAME \$document_root\$fastcgi_script_name;
-            fastcgi_param LARA_ENV local; # Environment variable for Laravel
-            fastcgi_param HTTPS off;
-        }
-EOF
-
-# Nginx Server Block config for HHVM (with SSL)
-read -d '' PHP_WITH_SSL <<EOF
-        # pass the PHP scripts to php5-fpm
-        location ~ \.(hh|php)$ {
-            try_files \$uri =404;
-            fastcgi_keep_conn on;
-            fastcgi_split_path_info ^(.+\.php)(/.+)$;
-            # With HHVM:
             fastcgi_pass 127.0.0.1:9000;
             fastcgi_index index.php;
             include fastcgi_params;
@@ -236,7 +194,7 @@ if [[ $ForceOverwrite -eq 1 ]]; then
     # remove symlink from sites-enabled directory
     rm -f "/etc/nginx/sites-enabled/${ServerBlockName}" &>/dev/null
     if [[ $? -eq 0 ]]; then
-        # if file has been removed, provide user with information that existing server 
+        # if file has been removed, provide user with information that existing server
         # block is being overwritten
         echo ">>> ${ServerBlockName} is enabled and will be overwritten"
         echo ">>> to enable this server block execute 'ngxen ${ServerBlockName}' or use the -e flag"
