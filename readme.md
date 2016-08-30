@@ -1,23 +1,12 @@
-# Vaprobash
+# Vaprobash for Professor Francken
 
-**Va**&#x200B;grant **Pro**&#x200B;visioning **Bash** Scripts
+This repository can be used to setup a development environment using virtual box
+& vagrant.
+It is based on Fideloper's [vaprobash](fideloper/Vaprobash) and has been
+customized to suit the needs for our website.
 
-[View the site and extended docs.](http://fideloper.github.io/Vaprobash/index.html)
-
-[![Build Status](https://travis-ci.org/fideloper/Vaprobash.png?branch=master)](https://travis-ci.org/fideloper/Vaprobash)
-
-## Goal
-
-The goal of this project is to create easy to use bash scripts in order to provision a Vagrant server.
-
-1. This targets Ubuntu LTS releases, currently 14.04.*
-2. This project will give users various popular options such as LAMP, LEMP
-3. This project will attempt some modularity. For example, users might choose to install a Vim setup, or not.
-
-Some further assumptions and self-imposed restrictions. If you find yourself needing or wanting the following, then other provisioning tool would better suited ([Chef](http://www.getchef.com), [Puppet](http://puppetlabs.com), [Ansible](http://www.ansibleworks.com)).
-
-* If other OSes need to be used (CentOS, Redhat, Arch, etc).
-* If dependency management becomes complex. For example, installing Laravel depends on Composer. Setting a document root for a project will change depending on Nginx or Apache. Currently, these dependencies are accounted for, but more advanced dependencies will likely not be.
+**Note**: if your computer supports using docker then it is recommended to use
+Docker instead.
 
 ## Dependencies
 
